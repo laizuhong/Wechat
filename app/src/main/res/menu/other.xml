@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/create"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_create_group_cheat"
+        android:title="发起群聊"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/add"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_add_friend"
+        android:title="添加好友"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/scan"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_scan_white"
+        android:title="扫一扫"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/buy"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_payment_received"
+        android:title="收付款"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/help"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_help_feedback"
+        android:title="帮助与反馈"
+        app:showAsAction="always" />
+</menu>

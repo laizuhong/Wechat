@@ -8,8 +8,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ListPopupWindow;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,9 +18,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.utils.SizeUtils;
 import com.luseen.luseenbottomnavigation.BottomNavigation.BottomNavigationView;
 import com.lzh.wechat.fragment.ContactsFragment;
 import com.lzh.wechat.fragment.DiscoveryFragment;
@@ -46,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.doc)
     TextView doc;
 
-    PopupMenu popupMenu;
+    ListPopupWindow popupWindow;
+    boolean isShow=false;
 
     List<Fragment> fragments;
     String[] title=new String[]{"消息","通讯录","发现","我"};
@@ -102,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        initPopMenu();
     }
 
     @Override
@@ -122,7 +126,13 @@ public class MainActivity extends AppCompatActivity {
             case R.id.search:
                 break;
             case R.id.other:
-                initPopMenu();
+                if (isShow){
+                    popupWindow.dismiss();
+                    isShow=false;
+                }else {
+                    popupWindow.show();
+                    isShow=true;
+                }
                 break;
         }
 
@@ -154,12 +164,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void initPopMenu(){
-        ListPopupWindow popupWindow=new ListPopupWindow(this);
+        popupWindow=new ListPopupWindow(this);
         popupWindow.setAdapter(new MenuAdapter());
 
-        popupWindow.setAnchorView(doc);
-//        popupWindow.setDropDownGravity(Gravity.END);
-        popupWindow.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+        popupWindow.setAnchorView(toolbar);
+        popupWindow.setDropDownGravity(Gravity.END);
+        popupWindow.setWidth(SizeUtils.dp2px(this,200));
         popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         popupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -168,7 +178,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        popupWindow.show();
+        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                isShow=false;
+            }
+        });
 
     }
 

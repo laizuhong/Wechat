@@ -26,4 +26,14 @@ public abstract class BaseFragment extends Fragment{
 
 
     public abstract View initView(LayoutInflater inflater);
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        bindView();
+    }
+
+    public void bindView(){
+
+    }
 }

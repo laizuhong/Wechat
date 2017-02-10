@@ -39,7 +39,6 @@ dependencies {
     compile files('libs/butterknife-7.0.1.jar')
     //    compile 'com.github.armcha:LuseenBottomNavigation:1.8.2'
     compile project(':BottomNavigationViewLibrary')
-
     // 添加依赖。注意，版本号必须一致。
     // 基础功能 (必需)
     compile 'com.netease.nimlib:basesdk:3.3.0'
@@ -51,4 +50,5 @@ dependencies {
     compile 'com.netease.nimlib:rts:3.3.0'
     // 全文检索服务需要
     compile 'com.netease.nimlib:lucene:3.3.0'
+    compile project(':utilcode')
 }

@@ -81,20 +81,26 @@ public class IndexBar extends View{
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        int i;
+        int i=-1;
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 index= (int) (event.getY()/itemHeight);
-
-                listener.onLetterUpdate(strs[index]);
+                if (index>=0&&index<strs.length&&listener!=null){
+                    listener.onLetterUpdate(strs[index]);
+                    index=i;
+                }
                 setBackgroundColor(ContextCompat.getColor(context,R.color.side_bar_pressed));
                 break;
             case MotionEvent.ACTION_MOVE:
                 index= (int) (event.getY()/itemHeight);
-                listener.onLetterUpdate(strs[index]);
+                if (index>=0&&index<strs.length&&listener!=null){
+                    listener.onLetterUpdate(strs[index]);
+                    index=i;
+                }
                 setBackgroundColor(ContextCompat.getColor(context,R.color.side_bar_pressed));
                 break;
             case MotionEvent.ACTION_UP:
+                index=-1;
                 setBackgroundColor(Color.TRANSPARENT);
                 break;
         }

@@ -1,1 +1,1 @@
-include ':app', ':BottomNavigationViewLibrary', ':utilcode'
+include ':app', ':BottomNavigationViewLibrary', ':utilcode', ':texticonview'

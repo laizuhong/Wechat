@@ -15,22 +15,85 @@
        android:padding="16dp"
        android:orientation="vertical">
 
-       <android.support.design.widget.TextInputEditText
-           android:id="@+id/username"
-           android:hint="用户名"
+       <RelativeLayout
            android:layout_width="match_parent"
-           android:layout_height="wrap_content" />
+           android:gravity="center_vertical"
+           android:layout_height="@dimen/def_height">
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textColor="@android:color/black"
+               android:text="国家/地区"/>
+           <TextView
+               android:layout_alignParentRight="true"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textColor="@color/green1"
+               android:text="中国"/>
 
-       <android.support.design.widget.TextInputEditText
-           android:id="@+id/password"
-           android:hint="密码"
+       </RelativeLayout>
+
+       <ImageView
            android:layout_width="match_parent"
-           android:layout_height="wrap_content" />
+           android:layout_height="0.8dp"
+           android:background="#D2D2D2"/>
+
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:gravity="center_vertical">
+           <com.rengwuxian.materialedittext.MaterialEditText
+               android:id="@+id/username"
+               android:hint="你的手机号"
+               android:layout_width="match_parent"
+               app:met_clearButton="true"
+               android:paddingLeft="50dp"
+               app:met_floatingLabel="highlight"
+               app:met_primaryColor="?colorAccent"
+               android:layout_height="wrap_content" />
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="60dp"
+               android:gravity="center_vertical"
+               android:text="+86"
+               android:textColor="@android:color/black"/>
+       </RelativeLayout>
+
+
+
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:gravity="center_vertical">
+           <com.rengwuxian.materialedittext.MaterialEditText
+               android:id="@+id/password"
+               android:hint="填写密码"
+               app:met_clearButton="true"
+               app:met_floatingLabel="highlight"
+               app:met_primaryColor="?colorAccent"
+               android:inputType="textPassword"
+               android:paddingLeft="50dp"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"/>
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="60dp"
+               android:gravity="center_vertical"
+               android:text="密码"
+               android:textColor="@android:color/black"/>
+       </RelativeLayout>
+
+
+
 
        <android.support.v7.widget.AppCompatButton
            android:id="@+id/login"
            android:text="登录"
            style="@style/Base.Widget.AppCompat.Button"
+           android:background="@drawable/selector_btn"
+           android:enabled="false"
+           android:textColor="@color/white"
+           android:layout_marginTop="20dp"
            android:layout_width="match_parent"
            android:layout_height="wrap_content" />
    </LinearLayout>

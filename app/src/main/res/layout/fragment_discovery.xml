@@ -1,111 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/gray5"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <com.lzh.texticonview.TextIconView
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/white"
+        android:layout_height="@dimen/def_height"
         android:layout_marginTop="20dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:src="@drawable/ic_friend_circle"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="朋友圈"/>
-    </LinearLayout>
+        android:background="@drawable/selector_background"
+        app:left_icon="@drawable/ic_friend_circle"
+        app:icon_margin_left="20dp"
+        app:icon_margin_right="20dp"
+        app:left_text="朋友圈"/>
 
-    <LinearLayout
+    <com.lzh.texticonview.TextIconView
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/white"
+        android:layout_height="@dimen/def_height"
         android:layout_marginTop="20dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:src="@drawable/ic_scan_blue"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="扫一扫"/>
-    </LinearLayout>
+        android:background="@drawable/selector_background"
+        app:left_icon="@drawable/ic_scan_blue"
+        app:icon_margin_left="20dp"
+        app:icon_margin_right="20dp"
+        app:left_text="扫一扫"/>
 
-    <LinearLayout
+    <com.lzh.texticonview.TextIconView
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/white"
+        android:layout_height="@dimen/def_height"
         android:layout_marginTop="20dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:src="@drawable/ic_shake_blue"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="摇一摇"/>
-    </LinearLayout>
+        android:background="@drawable/selector_background"
+        app:left_icon="@drawable/ic_shake_blue"
+        app:icon_margin_left="20dp"
+        app:icon_margin_right="20dp"
+        app:left_text="摇一摇"/>
 
-    <LinearLayout
+    <com.lzh.texticonview.TextIconView
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/white"
+        android:layout_height="@dimen/def_height"
         android:layout_marginTop="20dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:src="@drawable/ic_shop_red"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="购物"/>
-    </LinearLayout>
+        android:background="@drawable/selector_background"
+        app:left_icon="@drawable/ic_shop_red"
+        app:icon_margin_left="20dp"
+        app:icon_margin_right="20dp"
+        app:left_text="购物"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0.8dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:background="@color/gray5"/>
-    <LinearLayout
+    <com.lzh.texticonview.TextIconView
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/white"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:src="@drawable/ic_game"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="游戏"/>
-    </LinearLayout>
+        android:layout_height="@dimen/def_height"
+        android:background="@drawable/selector_background"
+        app:left_icon="@drawable/ic_game"
+        app:icon_margin_left="20dp"
+        app:icon_margin_right="20dp"
+        app:left_text="游戏"/>
 </LinearLayout>

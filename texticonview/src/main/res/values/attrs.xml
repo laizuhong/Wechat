@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <declare-styleable name="TextIconView">
+        <attr name="icon_margin_left" format="dimension"/>
+        <attr name="icon_margin_right" format="dimension"/>
+        <attr name="left_icon" format="reference|color"/>
+        <attr name="left_text" format="string"/>
+    </declare-styleable>
+</resources>

@@ -7,17 +7,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ListPopupWindow;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -29,6 +23,7 @@ import com.lzh.wechat.fragment.DiscoveryFragment;
 import com.lzh.wechat.fragment.MessageFragment;
 import com.lzh.wechat.fragment.MineFragment;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.doc)
     TextView doc;
 
-    ListPopupWindow popupWindow;
-    boolean isShow=false;
+    PopupWindow popupWindow;
+    boolean isShow=true;
 
     List<Fragment> fragments;
     String[] title=new String[]{"消息","通讯录","发现","我"};
@@ -126,19 +121,35 @@ public class MainActivity extends AppCompatActivity {
             case R.id.search:
                 break;
             case R.id.other:
-                if (isShow){
-                    popupWindow.dismiss();
-                    isShow=false;
-                }else {
-                    popupWindow.show();
-                    isShow=true;
-                }
+                if (popupWindow!=null)
+                    if (!popupWindow.isShowing()){
+                        popupWindow.showAtLocation(viewPager, Gravity.TOP|Gravity.END, SizeUtils.dp2px(this,12),toolbar.getHeight()+getStatusBarHeight());
+                    }else {
+                        popupWindow.dismiss();
+                    }
                 break;
         }
 
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
+    /**
+     * 获取状态栏的高度
+     *
+     * @return
+     */
+    public int getStatusBarHeight() {
+        try {
+            Class<?> c = Class.forName("com.android.internal.R$dimen");
+            Object obj = c.newInstance();
+            Field field = c.getField("status_bar_height");
+            int x = Integer.parseInt(field.get(obj).toString());
+            return getResources().getDimensionPixelSize(x);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
     class MyPagerAdapter extends FragmentPagerAdapter{
 
@@ -164,55 +175,77 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void initPopMenu(){
-        popupWindow=new ListPopupWindow(this);
-        popupWindow.setAdapter(new MenuAdapter());
-
-        popupWindow.setAnchorView(toolbar);
-        popupWindow.setDropDownGravity(Gravity.END);
-        popupWindow.setWidth(SizeUtils.dp2px(this,200));
-        popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-        popupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-        });
+        popupWindow=new PopupWindow(this);
+        View contentView=View.inflate(this,R.layout.pop_menu,null);
+        popupWindow.setContentView(contentView);
+        popupWindow.setFocusable(true);
+        popupWindow.setOutsideTouchable(true);
+//        popupWindow.setTouchable(true);
 
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
-                isShow=false;
+
             }
         });
+        contentView.findViewById(R.id.create).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
+        contentView.findViewById(R.id.add_friend).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        contentView.findViewById(R.id.scan).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        contentView.findViewById(R.id.payment).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        contentView.findViewById(R.id.help).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
 
-    class MenuAdapter extends BaseAdapter{
-
-        @Override
-        public int getCount() {
-            return res.length;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return menu[position];
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            convertView= LayoutInflater.from(MainActivity.this).inflate(R.layout.item_list_pop,null);
-            ImageView imageView= (ImageView) convertView.findViewById(R.id.img);
-            TextView textView= (TextView) convertView.findViewById(R.id.text);
-            imageView.setBackgroundResource(res[position]);
-            textView.setText(menu[position]);
-            return convertView;
-        }
-    }
+//    class MenuAdapter extends BaseAdapter{
+//
+//        @Override
+//        public int getCount() {
+//            return res.length;
+//        }
+//
+//        @Override
+//        public Object getItem(int position) {
+//            return menu[position];
+//        }
+//
+//        @Override
+//        public long getItemId(int position) {
+//            return position;
+//        }
+//
+//        @Override
+//        public View getView(int position, View convertView, ViewGroup parent) {
+//            convertView= View.inflate(MainActivity.this,R.layout.item_list_pop,null);
+//            ImageView imageView= (ImageView) convertView.findViewById(R.id.img);
+//            TextView textView= (TextView) convertView.findViewById(R.id.text);
+//            imageView.setBackgroundResource(res[position]);
+//            textView.setText(menu[position]);
+//            return convertView;
+//        }
+//    }
 }

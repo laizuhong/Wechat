@@ -7,6 +7,8 @@ import android.graphics.Color;
 import android.os.Environment;
 import android.text.TextUtils;
 
+import com.lzh.wechat.util.FileUtil;
+import com.lzh.wechat.util.MyLog;
 import com.lzh.wechat.util.ShareUtils;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.SDKOptions;
@@ -14,6 +16,17 @@ import com.netease.nimlib.sdk.StatusBarNotificationConfig;
 import com.netease.nimlib.sdk.auth.LoginInfo;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.uinfo.UserInfoProvider;
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
+import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+
+import java.io.File;
 
 /**
  *
@@ -25,6 +38,7 @@ public class MyApp extends Application{
     public static SharedPreferences sp;
     public static MyApp instance;
 
+    public static DisplayImageOptions options;
 
     public static MyApp getInstance() {
         return instance;
@@ -38,7 +52,55 @@ public class MyApp extends Application{
         // SDK初始化（启动后台服务，若已经存在用户登录信息， SDK 将完成自动登录）
         NIMClient.init(this, loginInfo(), options());
 
+        FileUtil.create(this);
 
+        options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.drawable.ic_exit_account) // 设置图片在下载期间显示的图片
+//                .showImageForEmptyUri(R.drawable.item_default_image)// 设置图片Uri为空或是错误的时候显示的图片
+//                .showImageOnFail(R.drawable.item_default_image) // 设置图片加载/解码过程中错误时候显示的图片
+                .cacheInMemory(true)// 设置下载的图片是否缓存在内存中
+                .cacheOnDisk(true)// 设置下载的图片是否缓存在SD卡中
+                .considerExifParams(true) // 是否考虑JPEG图像EXIF参数（旋转，翻转）
+                .imageScaleType(ImageScaleType.IN_SAMPLE_INT)// 设置图片以如何的编码方式显示
+                .bitmapConfig(Bitmap.Config.RGB_565)// 设置图片的解码类型
+                .delayBeforeLoading(0)// int delayInMillis为你设置的下载前的延迟时间
+                .build();// 构建完成
+
+        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
+                .cacheInMemory(true).imageScaleType(ImageScaleType.EXACTLY)
+                .cacheOnDisk(true).build();
+
+        //设置缓存的路径
+        File cacheDir = new File(FileUtil.imagefile);
+        MyLog.e(cacheDir.getAbsolutePath());
+
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
+                this)
+                .threadPoolSize(3)
+// default
+                .threadPriority(Thread.NORM_PRIORITY - 2)
+                .denyCacheImageMultipleSizesInMemory()
+                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
+                .tasksProcessingOrder(QueueProcessingType.LIFO)
+                .denyCacheImageMultipleSizesInMemory()
+// .memoryCache(new LruMemoryCache((int) (6 * 1024 * 1024)))
+                .memoryCache(new WeakMemoryCache())
+                .memoryCacheSize((int) (2 * 1024 * 1024))
+                .memoryCacheSizePercentage(13)
+//                .discCache(new UnlimitedDiscCache())
+//// default
+//                .diskCache(new UnlimitedDiscCache(cacheDir))
+// default
+
+                .diskCacheSize(50 * 1024 * 1024)
+                .diskCache(new UnlimitedDiskCache(cacheDir))
+                .diskCacheFileCount(100)
+                .diskCacheFileNameGenerator(new HashCodeFileNameGenerator())
+                .defaultDisplayImageOptions(defaultOptions)
+//                .writeDebugLogs() // Remove
+                .build();
+// Initialize ImageLoader with configuration.
+        ImageLoader.getInstance().init(config);
     }
 
     // 如果返回值为 null，则全部使用默认参数。

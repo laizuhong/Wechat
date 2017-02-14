@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/gray5"
     android:layout_width="match_parent"
@@ -11,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginTop="20dp"
-        android:background="@color/white"
+        android:background="@drawable/selector_background"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <ImageView
@@ -55,135 +57,79 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <com.lzh.texticonview.TextIconView
         android:id="@+id/photo_layout"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/white"
+        android:layout_height="@dimen/def_height"
         android:layout_marginTop="20dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:src="@drawable/ic_photo_blue"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="相册"/>
-    </LinearLayout>
+        android:background="@drawable/selector_background"
+        app:left_icon="@drawable/ic_photo_blue"
+        app:icon_margin_left="20dp"
+        app:icon_margin_right="20dp"
+        app:left_text="相册"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0.8dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:background="@color/gray5"/>
-    <LinearLayout
-        android:id="@+id/sellect_layout"
+    <com.lzh.texticonview.TextIconView
+        android:id="@+id/sellection_layout"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/white"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:src="@drawable/ic_sellection"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="收藏"/>
-    </LinearLayout>
-    <LinearLayout
+        android:layout_height="@dimen/def_height"
+        android:background="@drawable/selector_background"
+        app:left_icon="@drawable/ic_sellection"
+        app:icon_margin_left="20dp"
+        app:icon_margin_right="20dp"
+        app:left_text="收藏"/>
+    <com.lzh.texticonview.TextIconView
         android:id="@+id/wallet_layout"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/white"
+        android:layout_height="@dimen/def_height"
         android:layout_marginTop="20dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:src="@drawable/ic_wallet_blue"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="钱包"/>
-    </LinearLayout>
+        android:background="@drawable/selector_background"
+        app:left_icon="@drawable/ic_wallet_blue"
+        app:icon_margin_left="20dp"
+        app:icon_margin_right="20dp"
+        app:left_text="钱包"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0.8dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
         android:background="@color/gray5"/>
-    <LinearLayout
-        android:id="@+id/_card_layout"
+    <com.lzh.texticonview.TextIconView
+        android:id="@+id/card_layout"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/white"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:src="@drawable/ic_card_pack"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="卡包"/>
-    </LinearLayout>
-    <LinearLayout
+        android:layout_height="@dimen/def_height"
+        android:background="@drawable/selector_background"
+        app:left_icon="@drawable/ic_card_pack"
+        app:icon_margin_left="20dp"
+        app:icon_margin_right="20dp"
+        app:left_text="卡包"/>
+    <com.lzh.texticonview.TextIconView
         android:id="@+id/emo_layout"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/white"
+        android:layout_height="@dimen/def_height"
         android:layout_marginTop="20dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:src="@drawable/ic_emo_yellow"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="表情"/>
-    </LinearLayout>
+        android:background="@drawable/selector_background"
+        app:left_icon="@drawable/ic_emo_yellow"
+        app:icon_margin_left="20dp"
+        app:icon_margin_right="20dp"
+        app:left_text="表情"/>
 
-    <LinearLayout
+    <com.lzh.texticonview.TextIconView
         android:id="@+id/setting_layout"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/white"
+        android:layout_height="@dimen/def_height"
         android:layout_marginTop="20dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:orientation="horizontal">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:src="@drawable/ic_setting_blue"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="设置"/>
-    </LinearLayout>
+        android:background="@drawable/selector_background"
+        app:left_icon="@drawable/ic_setting_blue"
+        app:icon_margin_left="20dp"
+        app:icon_margin_right="20dp"
+        app:left_text="设置"/>
+
+
+
 </LinearLayout>
